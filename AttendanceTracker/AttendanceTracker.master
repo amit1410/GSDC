@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AttendanceTracker.master.cs" Inherits="GSDC.AttendanceTracker.AttendanceTracker" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="FeaturedContent" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+    <asp:UpdateProgress ID="updateProgress" runat="server">
+            <ProgressTemplate>
+                <div id="progressBackgroundFilter" class="modal-backdrop fade in">
+                </div>
+                <div id="spinner">&nbsp;&nbsp;</div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+     <div class="clear hideSkiplink">
+        <div class="pagerDiv" style="background: gray; height: 41px; margin-top: 2px">
+            <div style="float: right; width: auto;">
+                <div id="cssmenu" style="float: right">
+                    <ul class="level1">
+                        <li><a href="Attendance.aspx">Attendance</a></li>       
+                         <li><a href="Details.aspx">Details</a></li>       
+                         <li><a href="ListAttendance.aspx">List</a></li>                    
+                        <li id="liManager" runat="server" visible="false"><a href="ListAttendance.aspx">Mgr. Approve</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+  <a href="../Default.aspx">Home</a>><%: Page.Title %><br />
+    <asp:ContentPlaceHolder ID="ContentAttendanceTracker" runat="server">
+         
+    </asp:ContentPlaceHolder>
+</asp:Content>

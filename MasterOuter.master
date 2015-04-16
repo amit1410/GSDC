@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MasterOuter.master.cs" Inherits="GSDC.MasterOuter" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:UpdateProgress ID="updateProgress" runat="server">
+        <ProgressTemplate>
+            <div id="progressBackgroundFilter" class="modal-backdrop fade in">
+            </div>
+            <div id="spinner">&nbsp;&nbsp;</div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <div class="clear hideSkiplink">
+        <div class="pagerDiv" style="background: gray; height: 41px; margin-top: 2px">
+            <div style="float: right; width: auto;">
+                <div id="cssmenu" style="float: right">
+                    <ul class="level1">
+                        <li><a href="Admin/CreateUsers.aspx" id="liAdmin" runat="server" visible="false">Administrator</a></li>
+                        <li><a href="#">Organisation Quality</a></li>
+                        <li class="has-sub"><a href="#">Organisation Development</a>
+                             <ul>
+                                 <li><a href="../WorkManagement/Reports.aspx">Report</a></li>
+                               
+                            </ul>
+                        </li>
+                      
+                        <li class="has-sub"><a href="#">Organization Health</a>
+                            <ul>
+                                 
+                                <li><a href="../LeaveTracker/NewRequest.aspx">Leave Management</a></li>
+                                <li><a href="../AttendanceTracker/Attendance.aspx">WFM</a></li>
+                                 <li><a href="../WorkManagement/DashBoard.aspx">DashBoard</a></li>
+                                 <li><a href="/ProjectChart/ListProjectChart.aspx">Project Charter</a></li>
+                                  
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+      <a href="../Default.aspx">Home</a>&nbsp; >&nbsp;<%: Page.Title %><br />
+ 
+     <asp:ContentPlaceHolder ID="ContentOuter" runat="server">
+    </asp:ContentPlaceHolder>
+  
+   </asp:Content>

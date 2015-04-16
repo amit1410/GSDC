@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LeaveTracker.master.cs" Inherits="GSDC.LeaveTracker.LeaveTracker" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="FeaturedContent" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
+    <asp:UpdateProgress ID="updateProgress" runat="server">
+            <ProgressTemplate>
+                <div id="progressBackgroundFilter" class="modal-backdrop fade in">
+                </div>
+                <div id="spinner">&nbsp;&nbsp;</div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    <div class="clear hideSkiplink">
+        <div class="pagerDiv" style="background: gray; height: 41px; margin-top: 2px">
+            <div style="float: right; width: auto;">
+                <div id="cssmenu" style="float: right">
+                    <ul class="level1">
+                        <li><a href="MyRequests.aspx">My Request</a></li>
+                        <li><a href="MyApprovals.aspx">My Approvals</a></li>
+                        <li><a href="NewRequest.aspx">New Leave Request</a></li>
+                        <li id="liManager" runat="server" visible="false"><a href="LeaveReport.aspx">Leave Report</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <a href="../Default.aspx">Home</a>&nbsp; >&nbsp;<%: Page.Title %><br /><br />
+    <asp:ContentPlaceHolder ID="ContentLeaveTracker" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>

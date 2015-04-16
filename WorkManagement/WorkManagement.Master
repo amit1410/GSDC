@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="WorkManagement.master.cs" Inherits="GSDC.WorkManagement.WorkManagement" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="FeaturedContent" runat="Server">
+</asp:Content>
+   
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
+    
+    <asp:UpdateProgress ID="updateProgress" runat="server">
+        <ProgressTemplate>
+            <div id="progressBackgroundFilter" class="modal-backdrop fade in">
+            </div>
+            <div id="spinner">&nbsp;&nbsp;</div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <div class="clear hideSkiplink">
+        <div class="pagerDiv" style="background: gray; height: 41px; margin-top: 2px">
+            <div style="float: right; width: auto;">
+                <div id="cssmenu" style="float: right">
+                     <ul class="level1">
+                        
+                           <li><a href="EmployeeActivity.aspx" id="liAdmin" runat="server" visible="true">Activity</a></li>
+                      
+                    
+
+
+                   
+                     <li class="has-sub"><a href="#" id="A2" runat="server" visible="false">Reports</a>
+                            <ul>
+                              <li><a href="Reporting.aspx" >Daily Report</a></li>
+                                <%--<li><a href="MonthlyReports.aspx">Monthly Report</a></li>--%>
+                            </ul>
+                         </li>
+                         </ul>
+                     
+                      
+                   
+                    
+                </div>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <a href="../Default.aspx">Home</a>&nbsp; >&nbsp;<%: Page.Title %><br />
+    <br />
+
+ 
+    <asp:Panel ID="panel1" runat="server" Height="600" ScrollBars="Auto">
+    <asp:ContentPlaceHolder ID="ContentEmployeeActivity" runat="server">
+    </asp:ContentPlaceHolder>
+         
+            </asp:Panel>
+</asp:Content>

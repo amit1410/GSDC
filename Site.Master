@@ -1,0 +1,159 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="GSDC.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %></title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+   
+    
+</head>
+<body>
+    <form runat="server">
+
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" ScriptMode="Release">
+            <%--<asp:ScriptManager runat="Server" >--%>
+
+
+
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+                <%--Framework Scripts--%>
+
+                <%--  <asp:ScriptReference Name="MsAjaxBundle" />--%>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="WebForms.js" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+
+        </asp:ToolkitScriptManager>
+
+
+        <div class="container body-content">
+            <div class="header">
+                <div class="title">
+                    <img src="../Images/Logo.png" />
+                </div>
+                <div class="loginDisplay">
+                    <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                        <AnonymousTemplate>
+                            [ <a href="~/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a> ]
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            Welcome <span class="bold">
+
+                                <asp:LoginName ID="HeadLoginName" runat="server" />
+                            </span>!
+                        [
+                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="/Login.aspx" />
+                            ]
+                            
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                    <asp:LinkButton ID="lnkChangePassword" runat="server" Text="Change Password"></asp:LinkButton>
+
+                    <asp:Panel ID="ChangePasswordPopup" runat="server" Style="display: none; background-color: white; width: 350px; padding: 10px">
+
+                        <table style="width: 100%">
+
+                            <tr>
+                                <td style="width: 120px; padding-right: 5px;">Old Password
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtOldPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvOldPassword" runat="server" Display="Dynamic" ValidationGroup="password" ErrorMessage="Enter Old Password" ForeColor="Red" ControlToValidate="txtOldPassword"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 120px; padding-right: 5px;">New Password
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvNewPassword" runat="server" Display="Dynamic" ValidationGroup="password" ErrorMessage="Enter New Password" ForeColor="Red" ControlToValidate="txtNewPassword"></asp:RequiredFieldValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 120px; padding-right: 5px;">Confirm Password
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="rfvConPassword" runat="server" Display="Dynamic" ValidationGroup="password" ErrorMessage="Enter Confirm Password" ForeColor="Red" ControlToValidate="txtConfirmPassword"></asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="cvConPassword" ControlToValidate="txtConfirmPassword" ValidationGroup="password" runat="server" ControlToCompare="txtNewPassword" Operator="Equal" ErrorMessage="Password not matched" ForeColor="Red" Display="Dynamic"></asp:CompareValidator>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:UpdatePanel ID="pnl" runat="server" UpdateMode="Conditional">
+                                        <ContentTemplate>
+                                            <asp:Label runat="server" ID="lblStatus"></asp:Label>
+                                        </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnCancel" />
+                                        </Triggers>
+                                    </asp:UpdatePanel>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <asp:Button runat="server" ID="btnSubmit" OnClick="btnSave_Click" Text="Save" ValidationGroup="password" />
+                                    <asp:Button runat="server" ID="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="false" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </asp:Panel>
+                    <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="lnkChangePassword"
+                        PopupControlID="ChangePasswordPopup" DropShadow="true"
+                        BackgroundCssClass="modal-backdrop fade in">
+                    </asp:ModalPopupExtender>
+
+                </div>
+
+                <%--<div class="clear hideSkiplink">
+                    <div class="pagerDiv" style="background: gray; height: 41px;margin-top:2px">
+                        <div style="float: right; width: auto;">
+                            <div id="cssmenu" style="float: right">
+                                <ul class="level1">
+                                    <li><a href="/LeaveTracker/MyRequests.aspx">My Request</a></li>
+                                    <li><a href="/LeaveTracker/MyApprovals.aspx">My Approvals</a></li>
+                                    <li><a href="/LeaveTracker/NewRequest.aspx">New Leave Request</a></li>
+                                    <li id="liManager" runat="server" visible="false"><a href="/LeaveTracker/LeaveReport.aspx">Leave Report</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>--%>
+            </div>
+            <div id="body">
+                <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Software One India Pvt. ltd</p>
+            </footer>
+        </div>
+
+    </form>
+</body>
+</html>
